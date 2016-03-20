@@ -10,6 +10,8 @@ Whether you choose to accept the changes after or not entirely up to you. You ca
 
 * * *
 
+Note: **vg_scraper.py** is the main python program. The rest are for the individual sites.
+
 My program scrapes three websites:
 
 * [VGChartz][1]
