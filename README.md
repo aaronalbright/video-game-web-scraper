@@ -1,5 +1,15 @@
 #Video Game Web Scraper
 
+* * *
+
+##CORRECTION (3/20/16 12:30AM)
+So, turns out I'm either smarter than I realize or dumber than I thought. The program now properly formats into real CSVs with actual data for every game.
+
+Whether you choose to accept the changes after or not entirely up to you. You can look back at the previous commit to see the original code. I also put the individual site scrapers back for good measure.
+
+
+* * *
+
 My program scrapes three websites:
 
 * [VGChartz][1]

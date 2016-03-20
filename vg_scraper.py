@@ -1,7 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import re
-
+import csv
 
 def fetchUrl():
     opener = urllib.request.build_opener()
@@ -15,36 +15,55 @@ def vgchartz():
     global html
     html = 'http://www.vgchartz.com/gamedb/?results=100'
     fetchUrl()
-    t = open("vgchartz.csv", 'w')
+    table = bsObj.find('table', {'class':'chart'})
+    rows = table.findAll('tr')
 
-    for game in bsObj.find('table', {'class':'chart'}).findAll('tr'):
-        t.write(str(game.get_text()) + "\n")
-
-    t.close()
+    csvFile = open("vgchartz.csv", 'wt')
+    writer = csv.writer(csvFile)
+    try:
+        for row in rows:
+            csvRow = []
+            for cell in row.findAll(['td','th']):
+                csvRow.append(cell.get_text())
+            writer.writerow(csvRow)
+    finally:
+        csvFile.close()
 
 def metacritic():
     global html
     html = 'http://www.metacritic.com/browse/games/score/metascore/all/all'
     fetchUrl()
-    t = open("metacritic.csv", 'w')
+    top100 = bsObj.find('div',{'class':'product_rows'})
+    rows = top100.findAll('div',{'class':'product_row'})
 
-    for game in bsObj.find('div', {'class':'product_rows'}).findAll('div', {'class':'product_title'}):
-        t.write(game.get_text())
-
-    t.close()
+    csvFile = open("metacritic.csv", 'wt')
+    writer = csv.writer(csvFile)
+    try:
+        for row in rows:
+            csvRow = []
+            for cell in row.findAll('div',{'class':{'product_item'}}):
+                csvRow.append(cell.get_text())
+            writer.writerow(csvRow)
+    finally:
+        csvFile.close()
 
 def howlong():
     global html
     html = 'http://howlongtobeat.com/stats_more.php?s=Most_Submissions'
     fetchUrl()
-    t = open("howlongtobeat.csv", 'w')
+    table = bsObj.find('table')
+    rows = table.findAll('tr')
 
-    for game in bsObj.table.tbody.findAll('td', {'class':'left'}):
-        t.write(str(game.get_text()))
-
-    t.close()
-
-
+    csvFile = open("howlongtobeat.csv", 'wt')
+    writer = csv.writer(csvFile)
+    try:
+        for row in rows:
+            csvRow = []
+            for cell in row.findAll('td'):
+                csvRow.append(cell.get_text())
+            writer.writerow(csvRow)
+    finally:
+        csvFile.close()
 
 vgchartz()
 metacritic()
