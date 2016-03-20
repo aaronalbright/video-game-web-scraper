@@ -15,7 +15,7 @@ def vgchartz():
     global html
     html = 'http://www.vgchartz.com/gamedb/?results=100'
     fetchUrl()
-    t = open("vgchartz.txt", 'w')
+    t = open("vgchartz.csv", 'w')
 
     for game in bsObj.find('table', {'class':'chart'}).findAll('tr'):
         t.write(str(game.get_text()) + "\n")
@@ -26,7 +26,7 @@ def metacritic():
     global html
     html = 'http://www.metacritic.com/browse/games/score/metascore/all/all'
     fetchUrl()
-    t = open("metacritic.txt", 'w')
+    t = open("metacritic.csv", 'w')
 
     for game in bsObj.find('div', {'class':'product_rows'}).findAll('div', {'class':'product_title'}):
         t.write(game.get_text())
@@ -37,7 +37,7 @@ def howlong():
     global html
     html = 'http://howlongtobeat.com/stats_more.php?s=Most_Submissions'
     fetchUrl()
-    t = open("howlongtobeat.txt", 'w')
+    t = open("howlongtobeat.csv", 'w')
 
     for game in bsObj.table.tbody.findAll('td', {'class':'left'}):
         t.write(str(game.get_text()))
