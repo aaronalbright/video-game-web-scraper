@@ -1,12 +1,6 @@
-#Video Game Web Scraper
+# Video Game Web Scraper
 
-* * *
-
-##CORRECTION (3/20/16 12:30AM)
-So, turns out I'm either smarter than I realize or dumber than I thought. The program now properly formats into real CSVs with actual data for every game.
-
-Whether you choose to accept the changes after or not entirely up to you. You can look back at the previous commit to see the original code. I also put the individual site scrapers back for good measure.
-
+(ReadMe last updated 3/20/2016)
 
 * * *
 
@@ -24,7 +18,7 @@ I was originally only going to do either VGChartz or Metacritic, but I ended up 
 
 I can technically scrape more than 100, especially on VGChartz, but HowLongtoBeat limits most if it's "all time" stats to 100.
 
-##Process 
+## Process 
 My program sessionally scrapes the various "Top 100" sections are the respective websites. For VGCharts, it gets the top 100 best-selling games. On Metacritic, it fetches the top 100 highest-rated games on the websites (pulled from both critics and user entries). It then dumps the data into their their respective files.
 
 HowLongToBeat is where things get tricky, but luckily the site is built to where I can get whatever I end up needing/choosing.
@@ -35,7 +29,7 @@ Because of this, the "hours played" on some games are more reliable than others.
 
 With a simple URL change, I can easily pull the top 100 longest games if needed.
 
-##Issues
+## Issues
 
 At first, Metacritic and HowLongToBeat kept giving me 403 and 406 errors. They were essentially rejecting my scraper because it could tell I wasn't a real browsing requesting the URL. Luckily, I figured out how to add a User Agent to the URL request, which basically tells the server that the program is using a browser.
 
@@ -43,9 +37,7 @@ I also had issues with global variables in Python. Turns out the solution was as
 
 For some reason, Metacritic formats its game titles with hard returns before and after the string. From the looks of it, the text is actually a text node and BS is just fetching the string, not value. Unless I can find a way to just get the value from the node, I'm stuck with the returns. 
 
-VGCharts, while it has a ton of useful, is poorly formatted. It's just one ugly table with zero classes or formatting. I couldn't figure out to only scrape the names and sales numbers because they are all wrapped in the same tags. I'd rather just not use it. 
-
-However, if you want more than 100, VGCharts and Metacritic are the only two I know I'd definitely be able to scrape more than 100 from.
+VGCharts, while it has a ton of useful, is poorly formatted. It's just one ugly table with zero classes or formatting. I couldn't figure out to only scrape the names and sales numbers because they are all wrapped in the same tags. I'd rather just not use it.
 
 
 [1]:http://vgchartz.com
